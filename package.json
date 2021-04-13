@@ -1,0 +1,84 @@
+{
+  "name": "testapp",
+  "private": true,
+  "engines": {
+    "node": "12.22.1",
+    "npm": "6.14.12"
+  },
+  "scripts": {
+    "start": "METEOR_OFFLINE_CATALOG=1 meteor run --no-release-check --no-lint --exclude-archs web.browser.legacy",
+    "start:legacy": "METEOR_OFFLINE_CATALOG=1 meteor run --no-release-check --no-lint",
+    "start:rawlog": "METEOR_OFFLINE_CATALOG=1 meteor run --no-release-check --no-lint --raw-logs --exclude-archs web.browser.legacy",
+    "lint": "standard --fix",
+    "check-npm": "meteor npx npm-check -u",
+    "audit-npm": "meteor npm audit --audit-level=high",
+    "build-app": "meteor build --server-only --directory ../.build",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer --production --no-release-check --no-lint"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.13.10",
+    "@material-ui/core": "4.11.3",
+    "@material-ui/icons": "4.11.2",
+    "bcrypt": "5.0.1",
+    "meteor-node-stubs": "1.0.3",
+    "nanoid-generate": "1.0.0",
+    "notistack": "1.0.5",
+    "pubsub-js": "1.9.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-emitter": "1.0.4",
+    "react-router-dom": "5.2.0",
+    "serialize-error": "8.0.1",
+    "simpl-schema": "1.12.0",
+    "stack-trace": "0.0.10",
+    "winston": "3.3.3",
+    "winston-mongodb": "5.0.7",
+    "yn": "4.0.0"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "@babel/core": "7.13.15",
+    "@babel/eslint-parser": "7.13.14",
+    "@babel/plugin-proposal-class-properties": "7.13.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "7.13.8",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.13.8",
+    "@babel/plugin-proposal-optional-catch-binding": "7.13.8",
+    "@babel/plugin-proposal-optional-chaining": "7.13.12",
+    "@babel/plugin-proposal-throw-expressions": "7.12.13",
+    "@babel/plugin-syntax-jsx": "7.12.13",
+    "standard": "16.0.3"
+  },
+  "standard": {
+    "parser": "@babel/eslint-parser",
+    "globals": [
+      "Assets",
+      "Clipboard",
+      "Element",
+      "fetch",
+      "File",
+      "FileReader",
+      "FormData",
+      "history",
+      "Image",
+      "__meteor_runtime_config__",
+      "performance",
+      "Reload"
+    ],
+    "ignore": [
+      "/.meteor/*",
+      "/packages/*",
+      "/public/*",
+      "/client/compatibility/*",
+      "/tmp/*",
+      "/tests/*"
+    ]
+  }
+}
