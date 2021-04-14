@@ -12,8 +12,10 @@ import NoMatch from './NoMatch.jsx'
 
 function AppRouter () {
   const currentUserId = useTracker(() => Meteor.userId(), [])
-  // const userLoading = Meteor.loggingIn() || Meteor.loggingOut()
+  const userLoading = Meteor.loggingIn() || Meteor.loggingOut()
   const loggedIn = typeof currentUserId === 'string'
+
+  console.log('loggedIn', loggedIn, userLoading)
 
   return (
     <Switch>

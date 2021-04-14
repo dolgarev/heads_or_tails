@@ -3,14 +3,13 @@ import i18n from 'meteor/universe:i18n'
 import { useTracker } from 'meteor/react-meteor-data'
 
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
-import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
+import LogoutButton from './LogoutButton.jsx'
 import UserAvatar from './UserAvatar.jsx'
 
 const useStyles = makeStyles((theme) => ({
@@ -33,15 +32,8 @@ const T = i18n.createComponent(t)
 
 function AppBarComponent () {
   const classes = useStyles()
-  const history = useHistory()
 
   const currUserId = useTracker(() => Meteor.userId(), [])
-
-  const handleLogoutAction = () => {
-    Meteor.logout(() => {
-      history.push('/')
-    })
-  }
 
   return (
     <AppBar position='static' elevation={0} className={classes.appBar}>
@@ -52,14 +44,7 @@ function AppBarComponent () {
         {typeof currUserId === 'string' && (
           <>
             <UserAvatar />
-            <Button
-              color='inherit'
-              variant='outlined'
-              className={classes.logout}
-              onClick={handleLogoutAction}
-            >
-              <T>AppBar.buttons.logout</T>
-            </Button>
+            <LogoutButton />
           </>
         )}
       </Toolbar>

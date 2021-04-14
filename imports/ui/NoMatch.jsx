@@ -1,6 +1,6 @@
 import i18n from 'meteor/universe:i18n'
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 function NoMatch () {
   const classes = useStyles()
+  const location = useLocation()
+
+  console.log('location.pathname', location.pathname)
 
   return (
     <Grid
