@@ -76,5 +76,8 @@
   },
   "PlayButton": {
     "action": "Play Round"
+  },
+  "LoadingUser": {
+    "label": "Loading..."
   }
 }

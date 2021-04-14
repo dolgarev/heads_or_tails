@@ -9,13 +9,14 @@ import ForgotPassword from './ForgotPassword.jsx'
 import ResetPassword from './ResetPassword.jsx'
 import Dashboard from './Dashboard.jsx'
 import NoMatch from './NoMatch.jsx'
+import LoadingUser from './LoadingUser'
 
 function AppRouter () {
   const currentUserId = useTracker(() => Meteor.userId(), [])
   const userLoading = useTracker(() => Meteor.loggingIn() || Meteor.loggingOut(), [])
   const loggedIn = typeof currentUserId === 'string'
 
-  if (userLoading) return null
+  if (userLoading) return <LoadingUser />
 
   return (
     <Switch>
