@@ -118,7 +118,7 @@ function SignUp ({
     }).then(() => {
       history.push('/signin')
     }).catch(err => {
-      isMounted && setSending(false)
+      isMounted() && setSending(false)
       emit('app.notifications.appendError', err.message)
     })
   }

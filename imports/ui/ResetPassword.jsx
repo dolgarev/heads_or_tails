@@ -108,7 +108,7 @@ function ResetPassword ({
     setSending(true)
     Accounts.resetPassword(token, formData.password, err => {
       if (err) {
-        isMounted && setSending(false)
+        isMounted() && setSending(false)
         emit('app.notifications.appendError', err.message)
       } else {
         history.push('/')

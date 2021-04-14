@@ -99,7 +99,7 @@ function SignIn ({
     setSending(true)
     Meteor.loginWithPassword({ email: formData.email }, formData.password, err => {
       if (err) {
-        isMounted && setSending(false)
+        isMounted() && setSending(false)
         emit('app.notifications.appendError', err.message)
       } else {
         Meteor.logoutOtherClients(() => {
