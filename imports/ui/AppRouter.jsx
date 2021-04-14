@@ -12,32 +12,32 @@ import NoMatch from './NoMatch.jsx'
 
 function AppRouter () {
   const currentUserId = useTracker(() => Meteor.userId(), [])
-  const userLoading = Meteor.loggingIn() || Meteor.loggingOut()
+  const userLoading = useTracker(() => Meteor.loggingIn() || Meteor.loggingOut(), [])
   const loggedIn = typeof currentUserId === 'string'
 
-  console.log('loggedIn', loggedIn, userLoading)
+  if (userLoading) return null
 
   return (
     <Switch>
-      {!loggedIn && (
-        <Route exact path='/signin' component={SignIn} />
-      )}
-      {!loggedIn && (
-        <Route path='/signup' component={SignUp} />
-      )}
-      {!loggedIn && (
-        <Route path='/forgot-password' component={ForgotPassword} />
-      )}
-      {!loggedIn && (
-        <Route path='/reset-password/:token' component={ResetPassword} />
-      )}
-      {loggedIn && (
-        <Route path='/dashboard' component={Dashboard} />
-      )}
-      <Route exact path='/'>
-        {loggedIn ? <Redirect to='/dashboard' /> : <Redirect to='/signin' /> }
+      <Route exact path='/signin'>
+        {loggedIn ? <Redirect to='/' /> : <SignIn />}
+      </Route>
+      <Route exact path='/signup'>
+        {loggedIn ? <Redirect to='/' /> : <SignUp />}
+      </Route>
+      <Route exact path='/forgot-password'>
+        {loggedIn ? <Redirect to='/' /> : <ForgotPassword />}
+      </Route>
+      <Route exact path='/reset-password/:token'>
+        {loggedIn ? <Redirect to='/' /> : <ResetPassword />}
+      </Route>
+      <Route exact path='/dashboard'>
+        {loggedIn ? <Dashboard /> : <Redirect to='/' />}
       </Route>
       <Route exact path='/404' component={NoMatch} />
+      <Route exact path='/'>
+        {loggedIn ? <Redirect to='/dashboard' /> : <Redirect to='/signin' />}
+      </Route>
       <Route path='*'>
         {<Redirect to='/404' />}
       </Route>
