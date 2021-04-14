@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor'
 import i18n from 'meteor/universe:i18n'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useMountedState } from 'react-use'
 
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
@@ -19,9 +20,16 @@ const T = i18n.createComponent(t)
 function LogoutButton () {
   const classes = useStyles()
   const history = useHistory()
+  const isMounted = useMountedState()
+
+  const [sending, setSending] = useState(false)
 
   const handleLogoutAction = () => {
+    if (sending) return
+
+    setSending(true)
     Meteor.logout(() => {
+      isMounted() && setSending(false)
       history.push('/')
     })
   }
@@ -31,6 +39,7 @@ function LogoutButton () {
       color='inherit'
       variant='outlined'
       className={classes.logout}
+      disabled={sending}
       onClick={handleLogoutAction}
     >
       <T>AppBar.buttons.logout</T>
