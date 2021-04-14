@@ -1,6 +1,12 @@
 {
   "_locale": "en",
   "_namespace": "App",
+  "AppBar": {
+    "appName": "Heads and Tails",
+    "buttons": {
+      "logout": "Log Out"
+    }
+  },
   "SignIn": {
     "formHeader": "Sign In",
     "labels": {
@@ -55,6 +61,20 @@
     }
   },
   "NoMatch": {
-    "notFound": "PAGE NOT FOUND"
+    "notFound": "PAGE NOT FOUND",
+    "backHome": "Back Home"
+  },
+  "ResultsTable": {
+    "cols": {
+      "result": "Result",
+      "date": "Date"
+    },
+    "result": {
+      "head": "Head",
+      "tail": "Tail"
+    }
+  },
+  "PlayButton": {
+    "action": "Play Round"
   }
 }

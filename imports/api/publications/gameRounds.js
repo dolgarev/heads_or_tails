@@ -39,6 +39,7 @@ Meteor.publish('dataSource.gameRounds', function gameRounds (
     playerId: this.userId
   }, {
     fields: {
+      playerId: 1,
       result: 1,
       createdAt: 1
     },

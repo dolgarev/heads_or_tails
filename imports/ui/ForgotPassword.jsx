@@ -4,6 +4,7 @@ import i18n from 'meteor/universe:i18n'
 import { Emitter } from 'react-emitter'
 import React, { useState } from 'react'
 import { Link as RouterLink, useHistory } from 'react-router-dom'
+import { useMountedState } from 'react-use'
 import SimpleSchema from 'simpl-schema'
 
 import Button from '@material-ui/core/Button'
@@ -26,7 +27,7 @@ const T = i18n.createComponent(t)
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    height: '100vh',
+    height: '90vh',
     overflow: 'hidden',
     margin: 0,
     flex: 1
@@ -56,6 +57,7 @@ function ForgotPassword ({
 }) {
   const classes = useStyles()
   const history = useHistory()
+  const isMounted = useMountedState()
 
   const [userEmail, setUserEmail] = useState('')
   const [formErrors, setFormErrors] = useState(new Map())
@@ -86,10 +88,9 @@ function ForgotPassword ({
     setSending(true)
     Accounts.forgotPassword({ email: formData.email }, err => {
       if (err) {
-        setSending(false)
+        isMounted && setSending(false)
         emit('app.notifications.appendError', err.message)
       } else {
-        setSending(false)
         history.push('/signin')
       }
     })

@@ -7,10 +7,7 @@ Meteor.createValidatedMethod({
   name: 'gameRounds.playRound',
   mixins: [...loggedMixinsSet],
   validate: null,
-  run ({
-    email,
-    password
-  }) {
+  run () {
     this.unblock()
 
     const [
