@@ -1,5 +1,6 @@
 import React from 'react'
 import { SnackbarProvider } from 'notistack'
+import { BrowserRouter } from 'react-router-dom'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Slide from '@material-ui/core/Slide'
@@ -18,8 +19,10 @@ function App () {
       maxSnack={3}
     >
       <CssBaseline />
-      <AppBar />
-      <AppContainer />
+      <BrowserRouter>
+        <AppBar />
+        <AppContainer />
+      </BrowserRouter>
     </SnackbarProvider>
   )
 }
