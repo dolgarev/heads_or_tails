@@ -104,7 +104,7 @@ function ResultsTable () {
             {rounds.map(round => (
               <TableRow key={round._id}>
                 <TableCell align='center'>
-                  {round.result
+                  {(round.result === 'head' || round.result === true)
                     ? <T _props={{ className: classnames(classes.result, classes.head) }}>ResultsTable.result.head</T>
                     : <T _props={{ className: classnames(classes.result, classes.tail) }}>ResultsTable.result.tail</T>
                   }

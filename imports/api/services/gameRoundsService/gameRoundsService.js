@@ -17,6 +17,8 @@ class GameRoundsService extends BaseService {
     this.__validate({ playerId }, playRoundSchema)
 
     const result = Math.floor(Math.random() * 2) === 0
+      ? 'head'
+      : 'tail'
 
     const newRoundId = GameRounds.insert({
       result,
@@ -26,7 +28,7 @@ class GameRoundsService extends BaseService {
 
     if (typeof newRoundId === 'string') {
       GameRoundCounters.incItem(`${playerId}.attempts`)
-      if (result) {
+      if (result === 'head') {
         GameRoundCounters.incItem(`${playerId}.heads`)
       } else {
         GameRoundCounters.incItem(`${playerId}.tails`)
