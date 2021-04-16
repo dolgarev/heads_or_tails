@@ -16,8 +16,6 @@ function AppRouter () {
   const userLoading = useTracker(() => Meteor.loggingIn() || Meteor.loggingOut(), [])
   const loggedIn = typeof currentUserId === 'string'
 
-  if (userLoading) return <LoadingUser />
-
   return (
     <Switch>
       <Route exact path='/signin'>
@@ -40,7 +38,7 @@ function AppRouter () {
         {loggedIn ? <Redirect to='/dashboard' /> : <Redirect to='/signin' />}
       </Route>
       <Route path='*'>
-        <Redirect to='/404' />
+        {userLoading ? <LoadingUser /> : <Redirect to='/404' />}
       </Route>
     </Switch>
   )
