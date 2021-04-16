@@ -1,3 +1,5 @@
+import i18n from 'meteor/universe:i18n'
+
 export default class LocaleLib {
   static detectDefaultLocale () {
     return navigator.languages?.[0] ??
@@ -7,7 +9,7 @@ export default class LocaleLib {
   }
 
   static detectDefaultLang (
-    supportedLangs = ['en', 'ru']
+    supportedLangs = i18n.getLanguages()
   ) {
     const lc = LocaleLib.detectDefaultLocale() ?? ''
     const lang = lc.trim().split(/-|_/)[0].toLowerCase()
