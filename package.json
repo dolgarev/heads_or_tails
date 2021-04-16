@@ -24,6 +24,7 @@
     "animate.css": "4.1.1",
     "bcrypt": "5.0.1",
     "classnames": "2.3.1",
+    "gravatar-url": "3.1.0",
     "meteor-node-stubs": "1.0.3",
     "moment": "2.29.1",
     "nanoid-generate": "1.0.0",
