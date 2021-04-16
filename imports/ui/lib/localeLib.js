@@ -10,7 +10,7 @@ export default class LocaleLib {
     supportedLangs = ['en', 'ru']
   ) {
     const lc = LocaleLib.detectDefaultLocale() ?? ''
-    const lang = lc.split('-')[0].toLowerCase()
+    const lang = lc.trim().split(/-|_/)[0].toLowerCase()
     return supportedLangs.includes(lang) ? lang : undefined
   }
 }
