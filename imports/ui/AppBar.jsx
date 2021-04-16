@@ -5,10 +5,12 @@ import { useTracker } from 'meteor/react-meteor-data'
 import React from 'react'
 
 import AppBar from '@material-ui/core/AppBar'
+import Grid from '@material-ui/core/Grid'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
+import LangSwitcher from './LangSwitcher.jsx'
 import LogoutButton from './LogoutButton.jsx'
 import UserAvatar from './UserAvatar.jsx'
 
@@ -22,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   toolbarTitle: {
     flexGrow: 1
   },
-  logout: {
-    margin: theme.spacing(1, 1.5)
+  tools: {
+    width: 'auto'
   }
 }))
 
@@ -41,12 +43,11 @@ function AppBarComponent () {
         <Typography variant='h6' noWrap className={classes.toolbarTitle}>
           <T>AppBar.appName</T>
         </Typography>
-        {typeof currUserId === 'string' && (
-          <>
-            <UserAvatar />
-            <LogoutButton />
-          </>
-        )}
+        <Grid container alignItems='center' className={classes.tools}>
+          <LangSwitcher />
+          {typeof currUserId === 'string' && <UserAvatar />}
+          {typeof currUserId === 'string' && <LogoutButton />}
+        </Grid>
       </Toolbar>
     </AppBar>
   )

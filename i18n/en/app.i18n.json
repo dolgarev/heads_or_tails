@@ -79,5 +79,11 @@
   },
   "LoadingUser": {
     "label": "Loading..."
+  },
+  "LangSwitcher": {
+    "lang": {
+      "en": "English",
+      "ru": "Russian"
+    }
   }
 }

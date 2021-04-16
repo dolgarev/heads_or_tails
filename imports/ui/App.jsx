@@ -1,5 +1,5 @@
-import i18n from 'meteor/universe:i18n'
 import { useTracker } from 'meteor/react-meteor-data'
+import i18n from 'meteor/universe:i18n'
 import React from 'react'
 import { SnackbarProvider } from 'notistack'
 
