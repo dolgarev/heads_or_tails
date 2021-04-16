@@ -40,7 +40,7 @@ function AppRouter () {
         {loggedIn ? <Redirect to='/dashboard' /> : <Redirect to='/signin' />}
       </Route>
       <Route path='*'>
-        {<Redirect to='/404' />}
+        <Redirect to='/404' />
       </Route>
     </Switch>
   )
