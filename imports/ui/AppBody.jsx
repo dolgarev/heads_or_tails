@@ -4,14 +4,12 @@ import React from 'react'
 
 import AppBar from './AppBar.jsx'
 import AppContainer from './AppContainer.jsx'
-import AppNotifications from './AppNotifications.jsx'
 
 function AppBody () {
   return (
     <BrowserRouter>
       <AppBar />
       <AppContainer />
-      <AppNotifications />
     </BrowserRouter>
   )
 }
