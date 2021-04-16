@@ -1,0 +1,83 @@
+{
+  "_locale": "ru",
+  "_namespace": "App",
+  "AppBar": {
+    "appName": "Орел или решка",
+    "buttons": {
+      "logout": "Выход"
+    }
+  },
+  "SignIn": {
+    "formHeader": "Вход",
+    "labels": {
+      "email": "Имейл",
+      "password": "Пароль"
+    },
+    "buttons": {
+      "signIn": "Войти"
+    },
+    "links": {
+      "forgotPassword": "Забыли пароль?",
+      "signUp": "Еще нет аккаунта? Зарегистрируйтесь"
+    }
+  },
+  "SignUp": {
+    "formHeader": "Регистрация",
+    "labels": {
+      "email": "Имейл",
+      "password": "Пароль",
+      "confirmPassword": "Подтвердить пароль"
+    },
+    "buttons": {
+      "signUp": "Регистрировать"
+    },
+    "links": {
+      "signIn": "Попробовать войти снова"
+    }
+  },
+  "ForgotPassword": {
+    "formHeader": "Восстановление пароля",
+    "labels": {
+      "email": "Имейл"
+    },
+    "buttons": {
+      "forgot": "Восстановить пароль"
+    },
+    "links": {
+      "signIn": "Попробовать войти снова"
+    }
+  },
+  "ResetPassword": {
+    "formHeader": "Сброс пароля",
+    "labels": {
+      "password": "Пароль",
+      "confirmPassword": "Подтвердить пароль"
+    },
+    "buttons": {
+      "reset": "Сбросить пароль"
+    },
+    "links": {
+      "signIn": "Попробовать войти снова"
+    }
+  },
+  "NoMatch": {
+    "notFound": "Страница не существует",
+    "backHome": "Вернуться на главную"
+  },
+  "ResultsTable": {
+    "cols": {
+      "result": "Результат",
+      "date": "Дата"
+    },
+    "result": {
+      "head": "Орел",
+      "tail": "Решка"
+    }
+  },
+  "PlayButton": {
+    "action": "Сыграть раунд"
+  },
+  "LoadingUser": {
+    "label": "Загрузка..."
+  }
+}

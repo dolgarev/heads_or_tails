@@ -27,3 +27,4 @@ universe:i18n
 liberation:keyval-store
 sakulstra:aggregate
 lamhieu:unblock
+reactive-dict
