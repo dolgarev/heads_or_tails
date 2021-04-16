@@ -9,10 +9,6 @@ import AppBody from './AppBody.jsx'
 
 import AppState from './AppState.js'
 
-setTimeout(() => {
-  AppState.set('app.lang', 'ru')
-}, 15 * 1000)
-
 function App () {
   const lang = useTracker(() => AppState.get('app.lang'), [])
   i18n.setLocale(lang, { async: true, fresh: true })
