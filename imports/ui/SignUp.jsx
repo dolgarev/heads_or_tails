@@ -118,8 +118,11 @@ function SignUp ({
     }).then(() => {
       history.push('/signin')
     }).catch(err => {
+      const errMessage = err.error === 403
+        ? t('SignUp.errors.emailAlreadyExists')
+        : err.message
       isMounted() && setSending(false)
-      emit('app.notifications.appendError', err.message)
+      emit('app.notifications.appendError', errMessage)
     })
   }
 

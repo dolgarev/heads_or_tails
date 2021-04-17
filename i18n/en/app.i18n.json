@@ -18,9 +18,9 @@
       "signUp": "Don't have an account? Sign Up"
     },
     "errors": {
-      "accountIsBlocked": "Your account is blocked",
-      "accountIsRemoved": "Your account is removed",
-      "incorrectLoginCredentials": "Incorrect login or password",
+      "accountIsBlocked": "Your account is blocked.",
+      "accountIsRemoved": "Your account is removed.",
+      "incorrectLoginCredentials": "Incorrect login or password.",
       "tooManyRequest": "Too many requests! Please take {$timeToReset} seconds break.",
       "unknownError": "Unknown Error"
     }
@@ -37,6 +37,10 @@
     },
     "links": {
       "signIn": "Try signing in again"
+    },
+    "errors": {
+      "emailAlreadyExists": "Email already exists.",
+      "unknownError": "Unknown Error"
     }
   },
   "ForgotPassword": {

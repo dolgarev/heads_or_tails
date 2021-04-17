@@ -18,9 +18,9 @@
       "signUp": "Еще нет аккаунта? Зарегистрируйтесь"
     },
     "errors": {
-      "accountIsBlocked": "Ваш аккаунт заблокирован",
-      "accountIsRemoved": "Ваш аккаунт удален",
-      "incorrectLoginCredentials": "Неверный логин или пароль",
+      "accountIsBlocked": "Ваш аккаунт заблокирован.",
+      "accountIsRemoved": "Ваш аккаунт удален.",
+      "incorrectLoginCredentials": "Неверный логин или пароль.",
       "tooManyRequest": "Слишком много попыток! Отдохните {$timeToReset} секунд, пожалуйста.",
       "unknownError": "Неизвестная ошибка"
     }
@@ -37,6 +37,10 @@
     },
     "links": {
       "signIn": "Попробовать войти снова"
+    },
+    "errors": {
+      "emailAlreadyExists": "Имейл уже используется.",
+      "unknownError": "Неизвестная ошибка"
     }
   },
   "ForgotPassword": {
