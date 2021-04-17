@@ -11,8 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
 import LangSwitcher from './LangSwitcher.jsx'
-import LogoutButton from './LogoutButton.jsx'
-import UserAvatar from './UserAvatar.jsx'
+import UserMenu from './UserMenu.jsx'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -45,8 +44,7 @@ function AppBarComponent () {
         </Typography>
         <Grid container alignItems='center' className={classes.tools}>
           <LangSwitcher />
-          {typeof currUserId === 'string' && <UserAvatar />}
-          {typeof currUserId === 'string' && <LogoutButton />}
+          {typeof currUserId === 'string' && <UserMenu />}
         </Grid>
       </Toolbar>
     </AppBar>
