@@ -1,11 +1,13 @@
-// import { Meteor } from 'meteor/meteor'
+import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 
-const appName = 'TestApp'
-const supportEmail = 'no-reply@example.com'
+const {
+  appName = 'Heads and Tails',
+  supportEmail = 'no-reply@example.com'
+} = Meteor.settings?.public ?? {}
 
-Accounts.emailTemplates.siteName = 'TestApp'
-Accounts.emailTemplates.from = `TestApp Support ${supportEmail}`
+Accounts.emailTemplates.siteName = appName
+Accounts.emailTemplates.from = `${appName} Support ${supportEmail}`
 
 Accounts.emailTemplates.resetPassword = {
   subject () {
@@ -17,6 +19,6 @@ Accounts.emailTemplates.resetPassword = {
   }
 }
 
-// Accounts.validateLoginAttempt(({ allowed, error }) => {
-//   if (!allowed) throw new Meteor.Error(error.error ?? error.message)
-// })
+Accounts.validateLoginAttempt(({ allowed, error }) => {
+  if (!allowed) throw new Meteor.Error(error.error ?? error.message)
+})

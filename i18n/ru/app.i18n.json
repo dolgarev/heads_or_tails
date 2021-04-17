@@ -16,6 +16,13 @@
     "links": {
       "forgotPassword": "Забыли пароль?",
       "signUp": "Еще нет аккаунта? Зарегистрируйтесь"
+    },
+    "errors": {
+      "accountIsBlocked": "Ваш аккаунт заблокирован",
+      "accountIsRemoved": "Ваш аккаунт удален",
+      "incorrectLoginCredentials": "Неверный логин или пароль",
+      "tooManyRequest": "Слишком много попыток! Отдохните {$timeToReset} секунд, пожалуйста.",
+      "unknownError": "Неизвестная ошибка"
     }
   },
   "SignUp": {

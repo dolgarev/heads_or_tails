@@ -100,7 +100,7 @@ function SignIn ({
     Meteor.loginWithPassword({ email: formData.email }, formData.password, err => {
       if (err) {
         isMounted() && setSending(false)
-        emit('app.notifications.appendError', err.message)
+        emit('app.notifications.appendError', detectSignInError(err))
       } else {
         Meteor.logoutOtherClients(() => {
           history.push('/')
@@ -204,3 +204,20 @@ function SignIn ({
 }
 
 export default Emitter(SignIn)
+
+function detectSignInError (err) {
+  switch (err.error) {
+    case 401:
+      return t('SignIn.errors.accountIsBlocked')
+    case 403:
+      return t('SignIn.errors.incorrectLoginCredentials')
+    case 404:
+      return t('SignIn.errors.accountIsRemoved')
+    case 'too-many-requests':
+      return t('SignIn.errors.tooManyRequest', {
+        timeToReset: Math.ceil(err.details.timeToReset / 1000)
+      })
+    default:
+      return t('SignIn.errors.unknownError')
+  }
+}
