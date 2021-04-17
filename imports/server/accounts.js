@@ -20,5 +20,6 @@ Accounts.emailTemplates.resetPassword = {
 }
 
 Accounts.validateLoginAttempt(({ allowed, error }) => {
-  if (!allowed) throw new Meteor.Error(error.error ?? error.message)
+  if (allowed) return allowed
+  throw new Meteor.Error(error.error ?? error.message)
 })
