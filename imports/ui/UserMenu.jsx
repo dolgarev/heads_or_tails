@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 
+import { useCurrentUserId } from './hooks/customHooks.js'
+
 // import AppState from './AppState.js'
 import UserAvatar from './UserAvatar.jsx'
 
@@ -32,6 +34,8 @@ function UserMenu () {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [sending, setSending] = useState(false)
+
+  const currUserId = useCurrentUserId()
 
   const handleOpenMenu = e => {
     setAnchorEl(e.currentTarget)
@@ -62,7 +66,7 @@ function UserMenu () {
         onClick={handleOpenMenu}
         endIcon=<ArrowDropDownIcon />
       >
-        <UserAvatar />
+        <UserAvatar userId={currUserId} />
       </Button>
       <Menu
         id='user-menu'

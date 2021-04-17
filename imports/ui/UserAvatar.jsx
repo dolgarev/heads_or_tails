@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import deepOrange from '@material-ui/core/colors/deepOrange'
 
-import { useCurrentUserEmail } from './hooks/hooks.js'
+import { useUserEmail } from './hooks/customHooks.js'
 
 const useStyles = makeStyles((theme) => ({
   orange: {
@@ -17,10 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 const GRAVATAR_OPTS = { default: 404 }
 
-function UserAvatar () {
+function UserAvatar ({
+  userId
+}) {
   const classes = useStyles()
 
-  const userEmail = useCurrentUserEmail()
+  const userEmail = useUserEmail(userId, [userId])
   const letterAvatar = userEmail.slice(0, 1).toUpperCase()
 
   const avatarUrl = useMemo(() => {
