@@ -28,7 +28,7 @@ class UsersService extends BaseService {
     })
 
     if (typeof newUserId === 'string') {
-      this.pubSub.emit('users.createUser', { userId: newUserId })
+      this.pubSub.publish('users.createUser', { userId: newUserId })
     }
 
     return [newUserId]
