@@ -89,7 +89,7 @@ function ForgotPassword ({
     Accounts.forgotPassword({ email: formData.email }, err => {
       if (err) {
         isMounted() && setSending(false)
-        emit('app.notifications.appendError', err.message)
+        emit('app.notifications.appendError', err)
       } else {
         history.push('/signin')
       }

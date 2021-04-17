@@ -109,7 +109,10 @@ function ResetPassword ({
     Accounts.resetPassword(token, formData.password, err => {
       if (err) {
         isMounted() && setSending(false)
-        emit('app.notifications.appendError', err.message)
+        const error = err.error === 403
+          ? t('ResetPassword.errors.tokenExpired')
+          : err
+        emit('app.notifications.appendError', error)
       } else {
         history.push('/')
       }

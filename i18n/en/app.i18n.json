@@ -39,8 +39,7 @@
       "signIn": "Try signing in again"
     },
     "errors": {
-      "emailAlreadyExists": "Email already exists.",
-      "unknownError": "Unknown Error"
+      "emailAlreadyExists": "Email already exists."
     }
   },
   "ForgotPassword": {
@@ -66,6 +65,9 @@
     },
     "links": {
       "signIn": "Try signing in again"
+    },
+    "errors": {
+      "tokenExpired": "Token expired"
     }
   },
   "NoMatch": {

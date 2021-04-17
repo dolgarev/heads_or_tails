@@ -24,5 +24,9 @@ Meteor.detectMongoUrl = function detectMongoUrl () {
 }
 
 Meteor._forwardRpcMethodError = function _forwardRpcMethodError (err) {
-  if (err) throw new Meteor.Error(err.error ?? 'rpc-error', err.reason ?? err.message, { originalError: err })
+  if (err) {
+    const error = err.error ?? 'rpc-error'
+    const reason = err.reason ?? err.error ?? err.message
+    throw new Meteor.Error(error, reason, { originalError: err })
+  }
 }

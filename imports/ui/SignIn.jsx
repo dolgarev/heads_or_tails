@@ -218,6 +218,6 @@ function detectSignInError (err) {
         timeToReset: Math.ceil(err.details.timeToReset / 1000)
       })
     default:
-      return t('SignIn.errors.unknownError')
+      return err
   }
 }

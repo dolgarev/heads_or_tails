@@ -39,8 +39,7 @@
       "signIn": "Попробовать войти снова"
     },
     "errors": {
-      "emailAlreadyExists": "Имейл уже используется.",
-      "unknownError": "Неизвестная ошибка"
+      "emailAlreadyExists": "Имейл уже используется."
     }
   },
   "ForgotPassword": {
@@ -66,6 +65,9 @@
     },
     "links": {
       "signIn": "Попробовать войти снова"
+    },
+    "errors": {
+      "tokenExpired": "Токен просрочен"
     }
   },
   "NoMatch": {

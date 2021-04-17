@@ -31,7 +31,7 @@ function PlayButton ({
 
     setSending(true)
     Meteor.invoke('gameRounds.playRound').catch(err => {
-      emit('app.notifications.appendError', err.message)
+      emit('app.notifications.appendError', err)
     }).finally(() => {
       isMounted() && setSending(false)
     })
