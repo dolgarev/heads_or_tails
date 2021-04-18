@@ -68,7 +68,7 @@ function ResultsTable () {
   const currUserId = useTracker(() => Meteor.userId(), [])
 
   const totalAttempts = useTracker(() => {
-    const { attempts = 0 } = Meteor.user({ attempts: 1 }) ?? {}
+    const { attempts = 0 } = Meteor.user({ fields: { attempts: 1 } }) ?? {}
     return attempts
   }, [currUserId])
 
