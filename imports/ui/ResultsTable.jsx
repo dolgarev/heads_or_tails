@@ -21,6 +21,8 @@ import grey from '@material-ui/core/colors/grey'
 import orange from '@material-ui/core/colors/orange'
 import red from '@material-ui/core/colors/red'
 
+import CustomTablePaginationActions from './helpers/CustomTablePaginationActions.jsx'
+
 import GameRounds from '../api/collections/gameRounds.js'
 
 const useStyles = makeStyles((theme) => ({
@@ -104,9 +106,10 @@ function ResultsTable () {
             {rounds.map(round => (
               <TableRow key={round._id}>
                 <TableCell align='center'>
-                  {(round.result === 'head' || round.result === true)
-                    ? <T _props={{ className: classnames(classes.result, classes.head) }}>ResultsTable.result.head</T>
-                    : <T _props={{ className: classnames(classes.result, classes.tail) }}>ResultsTable.result.tail</T>
+                  {
+                    (round.result === 'head' || round.result === true)
+                      ? <T _props={{ className: classnames(classes.result, classes.head) }}>ResultsTable.result.head</T>
+                      : <T _props={{ className: classnames(classes.result, classes.tail) }}>ResultsTable.result.tail</T>
                   }
                 </TableCell>
                 <TableCell align='center'>
@@ -125,6 +128,7 @@ function ResultsTable () {
         page={page}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
+        ActionsComponent={CustomTablePaginationActions}
       />
     </Paper>
   )
