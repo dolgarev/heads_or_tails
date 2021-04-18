@@ -1,3 +1,4 @@
+import { check, Match } from 'meteor/check'
 import { Meteor } from 'meteor/meteor'
 
 import GameRounds from '../collections/gameRounds.js'
@@ -7,10 +8,19 @@ const UsersCollection = Meteor.users._name
 
 Meteor.publish('dataSource.gameRounds', function gameRounds (
   limit = 10,
-  skip = 0
+  skip = 0,
+  sortBy = ['createdAt', 'desc']
 ) {
   this.unblock()
   if (typeof this.userId !== 'string') return this.ready()
+
+  check(limit, Match.Where(v => Match.test(v, Match.Integer) && v > 0))
+  check(skip, Match.Where(v => Match.test(v, Match.Integer) && v >= 0))
+  check(sortBy, Match.Where(v => {
+    return Array.isArray(v) &&
+      v[0] === 'createdAt' &&
+      (v[1] === 'asc' || v[1] === 'desc')
+  }))
 
   const key = `${this.userId}.attempts`
   const cursor = GameRoundCounters.find(key, {
@@ -43,9 +53,7 @@ Meteor.publish('dataSource.gameRounds', function gameRounds (
       result: 1,
       createdAt: 1
     },
-    sort: {
-      createdAt: -1
-    },
+    sort: [sortBy],
     limit,
     ...(skip > 0 && { skip })
   })

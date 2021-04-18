@@ -14,6 +14,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
 import TableRow from '@material-ui/core/TableRow'
+import TableSortLabel from '@material-ui/core/TableSortLabel'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -55,6 +56,14 @@ function ResultsTable () {
 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [sortOrderBy] = useState('createdAt')
+  const [sortOrder, setSortOrder] = useState('desc')
+
+  const createSortHandler = prop => e => {
+    if (prop === 'createdAt') {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+    }
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage)
@@ -73,11 +82,18 @@ function ResultsTable () {
   }, [currUserId])
 
   const roundsLoaded = useTracker(() => {
-    const sub = Meteor.subscribe('dataSource.gameRounds', rowsPerPage, page * rowsPerPage)
+    const sortBy = [sortOrderBy, sortOrder]
+    const sub = Meteor.subscribe(
+      'dataSource.gameRounds',
+      rowsPerPage,
+      page * rowsPerPage,
+      sortBy
+    )
     return sub.ready()
-  }, [currUserId, page, rowsPerPage])
+  }, [currUserId, page, rowsPerPage, sortOrderBy, sortOrder])
 
   const rounds = useTracker(() => {
+    const sortBy = [sortOrderBy, sortOrder]
     return GameRounds.find({
       playerId: currUserId
     }, {
@@ -85,12 +101,10 @@ function ResultsTable () {
         result: 1,
         createdAt: 1
       },
-      sort: {
-        createdAt: -1
-      },
+      sort: [sortBy],
       limit: rowsPerPage
     }).fetch()
-  }, [currUserId, rowsPerPage])
+  }, [currUserId, rowsPerPage, sortOrderBy, sortOrder])
 
   return (
     <Paper elevation={0}>
@@ -98,8 +112,24 @@ function ResultsTable () {
         <Table className={classes.table} aria-label='game rounds'>
           <TableHead>
             <TableRow>
-              <TableCell align='center'><T>ResultsTable.cols.result</T></TableCell>
-              <TableCell align='center'><T>ResultsTable.cols.date</T></TableCell>
+              <TableCell
+                align='center'
+              >
+                <T>ResultsTable.cols.result</T>
+              </TableCell>
+              <TableCell
+                key='createdAt'
+                align='center'
+                sortDirection={sortOrderBy === 'createdAt' ? sortOrder : false}
+              >
+                <TableSortLabel
+                  active={sortOrderBy === 'createdAt'}
+                  direction={sortOrderBy === 'createdAt' ? sortOrder : 'asc'}
+                  onClick={createSortHandler('createdAt')}
+                >
+                  <T>ResultsTable.cols.date</T>
+                </TableSortLabel>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
