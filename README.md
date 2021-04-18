@@ -1,1 +1,1 @@
-# heads_or_tails
+# Heads or Tails
