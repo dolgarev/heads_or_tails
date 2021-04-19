@@ -22,13 +22,13 @@ class AppNotifications extends React.Component {
       } else if (ValidationError.is(err)) {
         errMessages.push(err.error)
       } else if (err instanceof Error) {
-        const errId = err.details?.originalError?.errId
         const errMessage = err.reason ?? err.message ?? err.error
-        errMessages.push(
-          typeof errId === 'string'
-            ? `${errMessage} (errcode is ${errId})`
-            : errMessage
-        )
+        const originalError = err.details?.originalError
+        if (typeof originalError?.errId === 'string') {
+          errMessage.push(`${errMessage} (errcode is ${originalError.errId})`)
+        } else {
+          errMessages.push(errMessage)
+        }
       }
       for (const errMessage of errMessages) {
         this.appendSnackbar(errMessage, 'error')
