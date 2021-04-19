@@ -53,7 +53,7 @@ export default class BaseService {
       }
 
       this.logger.error(`SERVICE [${this.serviceName}]: `, error)
-      return [error]
+      return [new Meteor.ApiError(error)]
     }
   }
 
