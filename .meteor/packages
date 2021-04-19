@@ -28,3 +28,4 @@ liberation:keyval-store
 sakulstra:aggregate
 lamhieu:unblock
 reactive-dict
+liberation:subscription-audit

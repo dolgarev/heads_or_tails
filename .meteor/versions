@@ -39,6 +39,7 @@ lamhieu:unblock@1.0.0
 launch-screen@1.2.1
 liberation:keyval-store@0.0.3
 liberation:mongo-options@0.0.1
+liberation:subscription-audit@0.0.4
 livedata@1.0.18
 localstorage@1.2.0
 logging@1.2.0
