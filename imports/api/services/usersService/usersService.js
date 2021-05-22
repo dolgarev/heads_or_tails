@@ -15,14 +15,14 @@ class UsersService extends BaseService {
     this.accountsService = services.accountsService
     this.serviceName = 'UsersService'
 
-    this.validateCreateUser = this.createUserSchema.validator({ clean: true })
+    this.validateCreateUserParams = this.createUserSchema.validator({ clean: true })
   }
 
   async createUser (actorId, {
     email,
     password
   }) {
-    const data = this.validateCreateUser({
+    const data = this.validateCreateUserParams({
       actorId,
       email,
       password

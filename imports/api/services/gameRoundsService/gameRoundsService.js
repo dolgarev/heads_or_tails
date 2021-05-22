@@ -17,11 +17,11 @@ export class GameRoundsService extends BaseService {
     this.playRoundSchema = schemas.playRoundSchema
     this.serviceName = 'GameRoundsService'
 
-    this.validatePlayRound = this.playRoundSchema.validator({ clean: true })
+    this.validatePlayRoundParams = this.playRoundSchema.validator({ clean: true })
   }
 
   async playRound (playerId) {
-    this.validatePlayRound({ playerId })
+    this.validatePlayRoundParams({ playerId })
 
     const result = Math.floor(Math.random() * 2) === 0
       ? 'head'
