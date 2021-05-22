@@ -3,35 +3,42 @@ import BaseService from '../baseService.js'
 import GameRounds from '../../collections/gameRounds'
 import GameRoundCounters from '../../collections/gameRoundCounters'
 
-import {
-  playRoundSchema
-} from './gameRoundsService.schemas.js'
+import { playRoundSchema } from './gameRoundsService.schemas.js'
 
-class GameRoundsService extends BaseService {
-  constructor () {
-    super()
+export class GameRoundsService extends BaseService {
+  constructor ({
+    repositories,
+    schemas,
+    services
+  }) {
+    super({ services })
+    this.gameRoundsRepository = repositories.gameRoundsRepository
+    this.gameRoundCountersRepository = repositories.gameRoundCountersRepository
+    this.playRoundSchema = schemas.playRoundSchema
     this.serviceName = 'GameRoundsService'
+
+    this.playRoundValidator = this.playRoundSchema.validator({ clean: true })
   }
 
-  playRound (playerId) {
-    this.__validate({ playerId }, playRoundSchema)
+  async playRound (playerId) {
+    this.playRoundValidator({ playerId })
 
     const result = Math.floor(Math.random() * 2) === 0
       ? 'head'
       : 'tail'
 
-    const newRoundId = GameRounds.insert({
+    const newRoundId = this.gameRoundsRepository.insert({
       result,
       playerId,
       createdAt: new Date()
     })
 
     if (typeof newRoundId === 'string') {
-      GameRoundCounters.incItem(`${playerId}.attempts`)
+      this.gameRoundCountersRepository.incItem(`${playerId}.attempts`)
       if (result === 'head') {
-        GameRoundCounters.incItem(`${playerId}.heads`)
+        this.gameRoundCountersRepository.incItem(`${playerId}.heads`)
       } else {
-        GameRoundCounters.incItem(`${playerId}.tails`)
+        this.gameRoundCountersRepository.incItem(`${playerId}.tails`)
       }
     }
 
@@ -39,4 +46,12 @@ class GameRoundsService extends BaseService {
   }
 }
 
-export default new GameRoundsService()
+export default new GameRoundsService({
+  repositories: {
+    gameRoundsRepository: GameRounds,
+    gameRoundCountersRepository: GameRoundCounters
+  },
+  schemas: {
+    playRoundSchema
+  }
+})

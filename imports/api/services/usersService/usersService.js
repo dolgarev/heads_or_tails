@@ -2,37 +2,50 @@ import { Accounts } from 'meteor/accounts-base'
 
 import BaseService from '../baseService.js'
 
-import {
-  createUserSchema
-} from './usersService.schemas.js'
+import { createUserSchema } from './usersService.schemas.js'
 
 class UsersService extends BaseService {
-  constructor () {
-    super()
+  constructor ({
+    schemas,
+    services
+  }) {
+    super({ services })
+
+    this.createUserSchema = schemas.createUserSchema
+    this.accountsService = services.accountsService
     this.serviceName = 'UsersService'
+
+    this.createUserValidator = this.createUserSchema.validator({ clean: true })
   }
 
-  createUser (actorId, {
+  async createUser (actorId, {
     email,
     password
   }) {
-    const data = this.__validate({
+    const data = this.createUserValidator({
       actorId,
       email,
       password
-    }, createUserSchema)
+    })
 
-    const newUserId = Accounts.createUser({
+    const newUserId = this.accountsService.createUser({
       email: data.email,
       password: data.password
     })
 
     if (typeof newUserId === 'string') {
-      this.pubSub.publish('users.createUser', { userId: newUserId })
+      this.eventsService.publish('users.createUser', { userId: newUserId })
     }
 
     return [newUserId]
   }
 }
 
-export default new UsersService()
+export default new UsersService({
+  schemas: {
+    createUserSchema
+  },
+  services: {
+    accountsService: Accounts
+  }
+})
