@@ -13,8 +13,8 @@
     "check-npm": "meteor npx npm-check -u",
     "audit-npm": "meteor npm audit --audit-level=high",
     "build-app": "meteor build --server-only --directory ../.build",
-    "test": "meteor test --once --driver-package meteortesting:mocha",
-    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "test": "TEST_CLIENT=0 meteor test --driver-package meteortesting:mocha --once",
+    "test-app": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --full-app",
     "visualize": "meteor --production --extra-packages bundle-visualizer --production --no-release-check --no-lint"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@material-ui/icons": "4.11.2",
     "animate.css": "4.1.1",
     "bcrypt": "5.0.1",
+    "chai": "4.3.4",
     "classnames": "2.3.1",
     "gravatar-url": "3.1.0",
     "meteor-node-stubs": "1.0.3",
@@ -46,8 +47,7 @@
     "mainModule": {
       "client": "client/main.jsx",
       "server": "server/main.js"
-    },
-    "testModule": "tests/main.js"
+    }
   },
   "devDependencies": {
     "@babel/core": "7.13.15",
