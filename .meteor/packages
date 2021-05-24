@@ -29,3 +29,4 @@ sakulstra:aggregate
 lamhieu:unblock
 reactive-dict@1.3.0
 liberation:subscription-audit
+meteortesting:mocha
