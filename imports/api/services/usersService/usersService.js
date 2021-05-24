@@ -1,10 +1,6 @@
-import { Accounts } from 'meteor/accounts-base'
-
 import BaseService from '../baseService.js'
 
-import { createUserSchema } from './usersService.schemas.js'
-
-class UsersService extends BaseService {
+export default class UsersService extends BaseService {
   constructor ({
     schemas,
     services
@@ -40,12 +36,3 @@ class UsersService extends BaseService {
     return [newUserId]
   }
 }
-
-export default new UsersService({
-  schemas: {
-    createUserSchema
-  },
-  services: {
-    accountsService: Accounts
-  }
-})

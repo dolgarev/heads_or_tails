@@ -1,11 +1,6 @@
 import BaseService from '../baseService.js'
 
-import GameRounds from '../../collections/gameRounds'
-import GameRoundCounters from '../../collections/gameRoundCounters'
-
-import { playRoundSchema } from './gameRoundsService.schemas.js'
-
-export class GameRoundsService extends BaseService {
+export default class GameRoundsService extends BaseService {
   constructor ({
     repositories,
     schemas,
@@ -45,13 +40,3 @@ export class GameRoundsService extends BaseService {
     return [newRoundId, result]
   }
 }
-
-export default new GameRoundsService({
-  repositories: {
-    gameRoundsRepository: GameRounds,
-    gameRoundCountersRepository: GameRoundCounters
-  },
-  schemas: {
-    playRoundSchema
-  }
-})

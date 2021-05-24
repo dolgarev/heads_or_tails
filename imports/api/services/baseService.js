@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor'
 import { ValidationError } from 'meteor/mdg:validation-error'
 import generate from 'nanoid-generate'
 import PubSub from 'pubsub-js'
-import SimpleSchema from 'simpl-schema'
 import { serializeError } from 'serialize-error'
 import stackTrace from 'stack-trace'
 
@@ -50,11 +49,5 @@ export default class BaseService {
       this.loggerService.error(`SERVICE [${this.serviceName}]: `, error)
       return [new Meteor.ApiError(error)]
     }
-  }
-
-  __validate (obj, schema) {
-    const cleanObject = schema.clean(obj)
-    SimpleSchema.validate(cleanObject, schema)
-    return cleanObject
   }
 }

@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 
-import GameRoundsService from '../services/gameRoundsService/gameRoundsService.js'
+import gameRoundsService from '../services/gameRoundsService'
 import { loggedMixinsSet } from './extensions/mixins.js'
 
 Meteor.createValidatedMethod({
@@ -14,7 +14,7 @@ Meteor.createValidatedMethod({
       err,
       ,
       result
-    ] = GameRoundsService.__invokeMethod('playRound', this.userId)
+    ] = gameRoundsService.__invokeMethod('playRound', this.userId)
 
     Meteor._forwardRpcMethodError(err)
     return result
