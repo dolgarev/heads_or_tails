@@ -50,4 +50,14 @@ export default class BaseService {
       return [new Meteor.ApiError(error)]
     }
   }
+
+  __validate (obj, schema) {
+    const cleanObject = schema.clean(obj)
+    const ctx = schema.newContext()
+    ctx.validate(cleanObject)
+    if (ctx.isValid()) return cleanObject
+
+    const errors = ctx.validationErrors()
+    throw new ValidationError(errors)
+  }
 }

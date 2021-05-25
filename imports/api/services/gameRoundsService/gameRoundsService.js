@@ -11,12 +11,10 @@ export default class GameRoundsService extends BaseService {
     this.gameRoundCountersRepository = repositories.gameRoundCountersRepository
     this.playRoundSchema = schemas.playRoundSchema
     this.serviceName = 'GameRoundsService'
-
-    this.validatePlayRoundParams = this.playRoundSchema.validator({ clean: true })
   }
 
   async playRound (playerId) {
-    this.validatePlayRoundParams({ playerId })
+    const data = this.__validate({ playerId }, this.playRoundSchema)
 
     const result = Math.floor(Math.random() * 2) === 0
       ? 'head'
@@ -24,16 +22,16 @@ export default class GameRoundsService extends BaseService {
 
     const newRoundId = this.gameRoundsRepository.insert({
       result,
-      playerId,
+      playerId: data.playerId,
       createdAt: new Date()
     })
 
     if (typeof newRoundId === 'string') {
-      this.gameRoundCountersRepository.incItem(`${playerId}.attempts`)
+      this.gameRoundCountersRepository.incItem(`${data.playerId}.attempts`)
       if (result === 'head') {
-        this.gameRoundCountersRepository.incItem(`${playerId}.heads`)
+        this.gameRoundCountersRepository.incItem(`${data.playerId}.heads`)
       } else {
-        this.gameRoundCountersRepository.incItem(`${playerId}.tails`)
+        this.gameRoundCountersRepository.incItem(`${data.playerId}.tails`)
       }
     }
 

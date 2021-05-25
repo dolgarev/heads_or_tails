@@ -10,19 +10,17 @@ export default class UsersService extends BaseService {
     this.createUserSchema = schemas.createUserSchema
     this.accountsService = services.accountsService
     this.serviceName = 'UsersService'
-
-    this.validateCreateUserParams = this.createUserSchema.validator({ clean: true })
   }
 
   async createUser (actorId, {
     email,
     password
   }) {
-    const data = this.validateCreateUserParams({
+    const data = this.__validate({
       actorId,
       email,
       password
-    })
+    }, this.createUserSchema)
 
     const newUserId = this.accountsService.createUser({
       email: data.email,
