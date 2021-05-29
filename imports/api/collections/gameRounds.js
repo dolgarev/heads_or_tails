@@ -6,6 +6,8 @@ class GameRoundsCollection extends CustomMongoCollection {}
 const GameRounds = new GameRoundsCollection('gameRounds')
 
 if (Meteor.isServer) {
+  Meteor.depsContainer.constant('repositories.gameRounds', GameRounds)
+
   GameRounds._ensureIndex({
     playerId: 1
   }, {

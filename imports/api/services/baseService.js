@@ -1,9 +1,10 @@
 import { Meteor } from 'meteor/meteor'
 import { ValidationError } from 'meteor/mdg:validation-error'
 import generate from 'nanoid-generate'
-import PubSub from 'pubsub-js'
 import { serializeError } from 'serialize-error'
 import stackTrace from 'stack-trace'
+
+const { container } = Meteor.depsContainer
 
 const NANOID_LENGTH = 6
 
@@ -11,9 +12,9 @@ export default class BaseService {
   constructor ({
     services
   } = {}) {
-    this.eventsService = services?.eventsService ?? PubSub
-    this.loggerService = services?.loggerService ?? Meteor.loggers.con
-    this.errorLoggerService = services?.errorLoggerService ?? Meteor.loggers.err
+    this.eventsService = services?.eventsService ?? container.eventsService
+    this.loggerService = services?.loggerService ?? container.loggerService
+    this.errorLoggerService = services?.errorLoggerService ?? container.errorLoggerService
   }
 
   __invokeMethod (method, ...args) {

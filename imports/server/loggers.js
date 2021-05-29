@@ -9,7 +9,7 @@ const STUB_LOGGER = 'stub'
 const {
   TESTAPP_SUPPRESS_WINSTON_LOGGER,
   TESTAPP_ALLOW_WINSTON_MONGODB_TRANSPORT,
-  LOG_LEVEL = 'error'
+  LOG_LEVEL = 'silly'
 } = process.env
 
 // [https://github.com/winstonjs/winston#logging]

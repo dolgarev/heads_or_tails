@@ -1,16 +1,23 @@
+import { Meteor } from 'meteor/meteor'
+
 import GameRoundsService from './gameRoundsService.js'
+import './gameRoundsService.schemas.js'
 
-import GameRounds from '../../collections/gameRounds'
-import GameRoundCounters from '../../collections/gameRoundCounters'
+const { container } = Meteor.depsContainer
 
-import { playRoundSchema } from './gameRoundsService.schemas.js'
+Meteor.depsContainer.provider('services.GameRoundsService', function () {
+  let instance
 
-export default new GameRoundsService({
-  repositories: {
-    gameRoundsRepository: GameRounds,
-    gameRoundCountersRepository: GameRoundCounters
-  },
-  schemas: {
-    playRoundSchema
+  this.$get = () => {
+    instance ??= new GameRoundsService({
+      repositories: {
+        gameRoundsRepository: container.repositories.gameRounds,
+        gameRoundCountersRepository: container.repositories.gameRoundCounters
+      },
+      schemas: {
+        playRoundSchema: container.schemas.playRound
+      }
+    })
+    return instance
   }
 })

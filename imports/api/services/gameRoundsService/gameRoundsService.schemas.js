@@ -1,5 +1,8 @@
+import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema'
 
-export const playRoundSchema = new SimpleSchema({
+const playRoundSchema = new SimpleSchema({
   playerId: SimpleSchema.RegEx.Id
 })
+
+Meteor.depsContainer.constant('schemas.playRound', playRoundSchema)

@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor'
-
-import gameRoundsService from '../services/gameRoundsService'
 import { loggedMixinsSet } from './extensions/mixins.js'
+
+const { container } = Meteor.depsContainer
+const gameRoundsService = container.services.GameRoundsService
 
 Meteor.createValidatedMethod({
   name: 'gameRounds.playRound',
